@@ -1,100 +1,101 @@
-## 🌊 Flow
+## 🌊 **Flow**
 
-### 🧭 **Posicionamento**
+### 🧭 **Positioning**
 
-> “O tempo certo, na cadência certa.”
+> “The right time, at the right cadence.”
 
-**Flow** não é um cronômetro: é um espaço onde o usuário *registra, entende e respeita seu ritmo de foco.*
-A proposta não é produtividade agressiva, é fluidez.
-Cada sessão é uma onda — começa, cresce, quebra, recomeça.
-
----
-
-### 🎨 **Identidade visual**
-
-**Tom geral:** leve, contínuo, fluido.
-Nada de vermelho ou laranja (energia forçada).
-Paleta deve refletir **equilíbrio e consistência.**
-
-| Elemento       | Diretriz                           | Exemplo              |
-| -------------- | ---------------------------------- | -------------------- |
-| **Primária**   | Azul petróleo ou azul acinzentado  | `#2E5EAA`            |
-| **Secundária** | Azul-claro translúcido             | `#A3C9F9`            |
-| **Acento**     | Lilás discreto para estados ativos | `#C2B8FF`            |
-| **Neutros**    | Fundo off-white e cinzas suaves    | `#F8FAFB`, `#D6DAE0` |
-
-**Tipografia:**
-
-* **San Francisco Rounded** (nativo e fluido)
-* **Font weight:** médio a semibold, nenhuma bold agressiva.
-* Evitar caixa alta. Flow é calmo, não grita.
-
-**Iconografia SF Symbols:**
-
-* Sessão ativa → `waveform.circle.fill`
-* Sessão encerrada → `pause.circle.fill`
-* Ações → `play.fill`, `plus.circle`, `checkmark.circle`
+**Flow** is not a timer — it’s a space where the user *records, understands, and respects their own rhythm of focus.*
+The goal isn’t aggressive productivity — it’s fluidity.
+Each session is a wave — it begins, builds, breaks, and starts again.
 
 ---
 
-### 🧠 **Tom da marca**
+### 🎨 **Visual Identity**
 
-Palavras-chave:
+**Overall tone:** light, continuous, fluid.
+No red or orange (forced energy).
+The palette should reflect **balance and consistency.**
 
-> “Calmo. Intencional. Presente.”
+| Element       | Guideline                    | Example              |
+| ------------- | ---------------------------- | -------------------- |
+| **Primary**   | Petrol blue or grayish blue  | `#2E5EAA`            |
+| **Secondary** | Translucent light blue       | `#A3C9F9`            |
+| **Accent**    | Soft lilac for active states | `#C2B8FF`            |
+| **Neutrals**  | Off-white and soft grays     | `#F8FAFB`, `#D6DAE0` |
 
-Não é um app de produtividade, é um app de presença mental.
-Evite palavras como *meta, tarefa, desempenho*.
-Prefira *sessão, ritmo, intervalo, fluxo*.
+**Typography:**
 
----
+* **San Francisco Rounded** (native and fluid)
+* **Font weight:** medium to semibold — avoid heavy bolds.
+* Avoid uppercase — Flow is calm, it doesn’t shout.
 
-### 🧩 **Arquitetura conceitual**
+**SF Symbols Iconography:**
 
-* Cada **Flow Session** é um objeto com:
-
-  ```swift
-  struct FlowSession: Identifiable, Codable {
-      let id: UUID
-      let start: Date
-      let end: Date?
-      let duration: TimeInterval
-      let note: String?
-  }
-  ```
-* O app incentiva registrar manualmente o início e o fim — sem gamificação.
-* Widgets e Live Activity mostram o **Flow atual** (tempo decorrido e “estado”).
+* Active session → `waveform.circle.fill`
+* Ended session → `pause.circle.fill`
+* Actions → `play.fill`, `plus.circle`, `checkmark.circle`
 
 ---
 
-### 💬 **Microcopy / Linguagem**
+### 🧠 **Brand Tone**
 
-| Contexto          | Texto sugerido                               |
-| ----------------- | -------------------------------------------- |
-| Tela inicial      | “Entre no seu Flow.”                         |
-| Botão principal   | “Iniciar sessão” / “Encerrar sessão”         |
-| Empty state       | “Nenhuma sessão ainda. Dê o primeiro passo.” |
-| Notificação final | “Seu Flow chegou ao fim.”                    |
-| Widget            | “Em Flow há 12min.”                          |
+Keywords:
+
+> “Calm. Intentional. Present.”
+
+It’s not a productivity app — it’s an app for mental presence.
+Avoid words like *goal, task, performance.*
+Prefer *session, rhythm, interval, flow.*
 
 ---
 
-### ⚙️ **Experiência e comportamento**
+### 🧩 **Conceptual Architecture**
 
-* App inicia com um *fade-in* sutil, fundo respirando levemente.
-* Botão principal com animação “press and hold” (em vez de tap seco).
+Each **Flow Session** is an object:
+
+```swift
+struct FlowSession: Identifiable, Codable {
+    let id: UUID
+    let start: Date
+    let end: Date?
+    let duration: TimeInterval
+    let note: String?
+}
+```
+
+* The app encourages users to manually start and end sessions — no gamification.
+* Widgets and Live Activities display the **current Flow** (elapsed time and state).
+
+---
+
+### 💬 **Microcopy / Voice & Tone**
+
+| Context            | Suggested Text                          |
+| ------------------ | --------------------------------------- |
+| Home screen        | “Enter your Flow.”                      |
+| Main button        | “Start session” / “End session”         |
+| Empty state        | “No sessions yet. Take the first step.” |
+| Final notification | “Your Flow has ended.”                  |
+| Widget             | “In Flow for 12 min.”                   |
+
+---
+
+### ⚙️ **Experience & Behavior**
+
+* App starts with a subtle *fade-in*, softly breathing background.
+* Main button uses a “press and hold” animation instead of a dry tap.
 * Live Activity:
 
-  * ícone de onda animando suavemente (loop lento).
-  * tempo decorrido no canto.
-* Widget pequeno: “Flow ativo há X min”.
-* Widget médio: histórico das 3 últimas sessões.
+  * Animated wave icon (slow loop).
+  * Elapsed time shown in the corner.
+* Small Widget: “Flow active for X min.”
+* Medium Widget: shows the last 3 sessions.
 
 ---
 
-### 📱 **Pitch rápido (para aula ou portfólio)**
+### 📱 **Quick Pitch (for class or portfolio)**
 
-> “Flow é um app minimalista de sessões de foco intencional.
-> O usuário inicia, mantém e encerra cada sessão conscientemente.
-> O Widget e a Live Activity mantêm a presença desse estado — sem pressa, sem ruído.
-> O tempo não é uma contagem regressiva, é uma linha de continuidade.”
+> “Flow is a minimalist app for intentional focus sessions.
+> The user begins, maintains, and ends each session consciously.
+> The Widget and Live Activity preserve the presence of that state — unhurried, without noise.
+> Time isn’t a countdown, it’s a line of continuity.”

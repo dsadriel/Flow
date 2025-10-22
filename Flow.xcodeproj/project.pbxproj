@@ -6,19 +6,141 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5C3A7F8D2EA805660073563B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3A7F8C2EA805660073563B /* WidgetKit.framework */; };
+		5C3A7F8F2EA805660073563B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C3A7F8E2EA805660073563B /* SwiftUI.framework */; };
+		5C3A7F9A2EA805670073563B /* FlowWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 5C3A7F8A2EA805660073563B /* FlowWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5C3A7F982EA805670073563B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5CB42AA92EA7C7A000E8374D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C3A7F892EA805660073563B;
+			remoteInfo = FlowWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C3A7F9B2EA805670073563B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5C3A7F9A2EA805670073563B /* FlowWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5C3A7F8A2EA805660073563B /* FlowWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FlowWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C3A7F8C2EA805660073563B /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		5C3A7F8E2EA805660073563B /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5CB42AB12EA7C7A000E8374D /* Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5C2144912EA8019200497E23 /* Exceptions for "LiveActivity" folder in "Flow" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FlowActivityConfiguration.swift,
+				FlowAttributes.swift,
+				FlowSessionIcon.swift,
+			);
+			target = 5CB42AB02EA7C7A000E8374D /* Flow */;
+		};
+		5C3A7F9F2EA805670073563B /* Exceptions for "FlowWidget" folder in "FlowWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5C3A7F892EA805660073563B /* FlowWidgetExtension */;
+		};
+		5C3A7FA12EA805720073563B /* Exceptions for "LiveActivity" folder in "FlowWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FlowActivityConfiguration.swift,
+				FlowAttributes.swift,
+				FlowSessionIcon.swift,
+			);
+			target = 5C3A7F892EA805660073563B /* FlowWidgetExtension */;
+		};
+		5C3A7FA42EA805C60073563B /* Exceptions for "Flow" folder in "FlowWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				App/Assets.xcassets,
+			);
+			target = 5C3A7F892EA805660073563B /* FlowWidgetExtension */;
+		};
+		5C8F942B2EA8470100EE5795 /* Exceptions for "Components" folder in "Flow" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ActionButtons.swift,
+				TimerTextView.swift,
+			);
+			target = 5CB42AB02EA7C7A000E8374D /* Flow */;
+		};
+		5C8F942C2EA8470100EE5795 /* Exceptions for "Components" folder in "FlowWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ActionButtons.swift,
+				TimerTextView.swift,
+			);
+			target = 5C3A7F892EA805660073563B /* FlowWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		5C2144682EA7FFA900497E23 /* LiveActivity */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5C2144912EA8019200497E23 /* Exceptions for "LiveActivity" folder in "Flow" target */,
+				5C3A7FA12EA805720073563B /* Exceptions for "LiveActivity" folder in "FlowWidgetExtension" target */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		5C3A7F902EA805660073563B /* FlowWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5C3A7F9F2EA805670073563B /* Exceptions for "FlowWidget" folder in "FlowWidgetExtension" target */,
+			);
+			path = FlowWidget;
+			sourceTree = "<group>";
+		};
+		5C8F94252EA846E300EE5795 /* Components */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5C8F942B2EA8470100EE5795 /* Exceptions for "Components" folder in "Flow" target */,
+				5C8F942C2EA8470100EE5795 /* Exceptions for "Components" folder in "FlowWidgetExtension" target */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		5CB42AB32EA7C7A000E8374D /* Flow */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5C3A7FA42EA805C60073563B /* Exceptions for "Flow" folder in "FlowWidgetExtension" target */,
+			);
 			path = Flow;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5C3A7F872EA805660073563B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C3A7F8F2EA805660073563B /* SwiftUI.framework in Frameworks */,
+				5C3A7F8D2EA805660073563B /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CB42AAE2EA7C7A000E8374D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -29,10 +151,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C2144662EA7FF2300497E23 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5C8F94252EA846E300EE5795 /* Components */,
+				5C2144682EA7FFA900497E23 /* LiveActivity */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		5C3A7F8B2EA805660073563B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5C3A7F8C2EA805660073563B /* WidgetKit.framework */,
+				5C3A7F8E2EA805660073563B /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5CB42AA82EA7C7A000E8374D = {
 			isa = PBXGroup;
 			children = (
+				5C2144662EA7FF2300497E23 /* Shared */,
 				5CB42AB32EA7C7A000E8374D /* Flow */,
+				5C3A7F902EA805660073563B /* FlowWidget */,
+				5C3A7F8B2EA805660073563B /* Frameworks */,
 				5CB42AB22EA7C7A000E8374D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				5CB42AB12EA7C7A000E8374D /* Flow.app */,
+				5C3A7F8A2EA805660073563B /* FlowWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +192,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5C3A7F892EA805660073563B /* FlowWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C3A7F9E2EA805670073563B /* Build configuration list for PBXNativeTarget "FlowWidgetExtension" */;
+			buildPhases = (
+				5C3A7F862EA805660073563B /* Sources */,
+				5C3A7F872EA805660073563B /* Frameworks */,
+				5C3A7F882EA805660073563B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5C3A7F902EA805660073563B /* FlowWidget */,
+			);
+			name = FlowWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = FlowWidgetExtension;
+			productReference = 5C3A7F8A2EA805660073563B /* FlowWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5CB42AB02EA7C7A000E8374D /* Flow */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5CB42ABC2EA7C7A000E8374D /* Build configuration list for PBXNativeTarget "Flow" */;
@@ -55,10 +221,12 @@
 				5CB42AAD2EA7C7A000E8374D /* Sources */,
 				5CB42AAE2EA7C7A000E8374D /* Frameworks */,
 				5CB42AAF2EA7C7A000E8374D /* Resources */,
+				5C3A7F9B2EA805670073563B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5C3A7F992EA805670073563B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				5CB42AB32EA7C7A000E8374D /* Flow */,
@@ -80,6 +248,9 @@
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
+					5C3A7F892EA805660073563B = {
+						CreatedOnToolsVersion = 26.0;
+					};
 					5CB42AB02EA7C7A000E8374D = {
 						CreatedOnToolsVersion = 26.0;
 					};
@@ -100,11 +271,19 @@
 			projectRoot = "";
 			targets = (
 				5CB42AB02EA7C7A000E8374D /* Flow */,
+				5C3A7F892EA805660073563B /* FlowWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5C3A7F882EA805660073563B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CB42AAF2EA7C7A000E8374D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +294,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5C3A7F862EA805660073563B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5CB42AAD2EA7C7A000E8374D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +310,75 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5C3A7F992EA805670073563B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C3A7F892EA805660073563B /* FlowWidgetExtension */;
+			targetProxy = 5C3A7F982EA805670073563B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		5C3A7F9C2EA805670073563B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ6K9TT2W7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlowWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FlowWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.dsadriel.Flow.FlowWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5C3A7F9D2EA805670073563B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ6K9TT2W7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlowWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FlowWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.dsadriel.Flow.FlowWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5CB42ABA2EA7C7A000E8374D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -313,6 +567,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5C3A7F9E2EA805670073563B /* Build configuration list for PBXNativeTarget "FlowWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C3A7F9C2EA805670073563B /* Debug */,
+				5C3A7F9D2EA805670073563B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5CB42AAC2EA7C7A000E8374D /* Build configuration list for PBXProject "Flow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

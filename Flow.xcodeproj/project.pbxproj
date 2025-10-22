@@ -6,14 +6,65 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BF7299D92EA9402800E9FC4E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7299D82EA9402800E9FC4E /* WidgetKit.framework */; };
+		BF7299DB2EA9402800E9FC4E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF7299DA2EA9402800E9FC4E /* SwiftUI.framework */; };
+		BF7299EC2EA9402900E9FC4E /* CurrentSessionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BF7299D62EA9402800E9FC4E /* CurrentSessionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF7299EA2EA9402900E9FC4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5CB42AA92EA7C7A000E8374D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF7299D52EA9402800E9FC4E;
+			remoteInfo = CurrentSessionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BF7299ED2EA9402900E9FC4E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BF7299EC2EA9402900E9FC4E /* CurrentSessionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5CB42AB12EA7C7A000E8374D /* Flow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7299D62EA9402800E9FC4E /* CurrentSessionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CurrentSessionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7299D82EA9402800E9FC4E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		BF7299DA2EA9402800E9FC4E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		BF7299F02EA9402900E9FC4E /* Exceptions for "CurrentSession" folder in "CurrentSessionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = BF7299D52EA9402800E9FC4E /* CurrentSessionExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		5CB42AB32EA7C7A000E8374D /* Flow */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Flow;
+			sourceTree = "<group>";
+		};
+		BF7299DC2EA9402800E9FC4E /* CurrentSession */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				BF7299F02EA9402900E9FC4E /* Exceptions for "CurrentSession" folder in "CurrentSessionExtension" target */,
+			);
+			path = CurrentSession;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +77,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF7299D32EA9402800E9FC4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7299DB2EA9402800E9FC4E /* SwiftUI.framework in Frameworks */,
+				BF7299D92EA9402800E9FC4E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				5CB42AB32EA7C7A000E8374D /* Flow */,
+				BF7299DC2EA9402800E9FC4E /* CurrentSession */,
+				BF7299D72EA9402800E9FC4E /* Frameworks */,
 				5CB42AB22EA7C7A000E8374D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +103,18 @@
 			isa = PBXGroup;
 			children = (
 				5CB42AB12EA7C7A000E8374D /* Flow.app */,
+				BF7299D62EA9402800E9FC4E /* CurrentSessionExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BF7299D72EA9402800E9FC4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BF7299D82EA9402800E9FC4E /* WidgetKit.framework */,
+				BF7299DA2EA9402800E9FC4E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +127,12 @@
 				5CB42AAD2EA7C7A000E8374D /* Sources */,
 				5CB42AAE2EA7C7A000E8374D /* Frameworks */,
 				5CB42AAF2EA7C7A000E8374D /* Resources */,
+				BF7299ED2EA9402900E9FC4E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BF7299EB2EA9402900E9FC4E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				5CB42AB32EA7C7A000E8374D /* Flow */,
@@ -70,6 +144,28 @@
 			productReference = 5CB42AB12EA7C7A000E8374D /* Flow.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BF7299D52EA9402800E9FC4E /* CurrentSessionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7299F12EA9402900E9FC4E /* Build configuration list for PBXNativeTarget "CurrentSessionExtension" */;
+			buildPhases = (
+				BF7299D22EA9402800E9FC4E /* Sources */,
+				BF7299D32EA9402800E9FC4E /* Frameworks */,
+				BF7299D42EA9402800E9FC4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BF7299DC2EA9402800E9FC4E /* CurrentSession */,
+			);
+			name = CurrentSessionExtension;
+			packageProductDependencies = (
+			);
+			productName = CurrentSessionExtension;
+			productReference = BF7299D62EA9402800E9FC4E /* CurrentSessionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -77,11 +173,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2600;
+				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					5CB42AB02EA7C7A000E8374D = {
 						CreatedOnToolsVersion = 26.0;
+					};
+					BF7299D52EA9402800E9FC4E = {
+						CreatedOnToolsVersion = 16.4;
 					};
 				};
 			};
@@ -100,12 +199,20 @@
 			projectRoot = "";
 			targets = (
 				5CB42AB02EA7C7A000E8374D /* Flow */,
+				BF7299D52EA9402800E9FC4E /* CurrentSessionExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5CB42AAF2EA7C7A000E8374D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7299D42EA9402800E9FC4E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +229,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BF7299D22EA9402800E9FC4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF7299EB2EA9402900E9FC4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF7299D52EA9402800E9FC4E /* CurrentSessionExtension */;
+			targetProxy = BF7299EA2EA9402900E9FC4E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5CB42ABA2EA7C7A000E8374D /* Debug */ = {
@@ -310,6 +432,62 @@
 			};
 			name = Release;
 		};
+		BF7299EE2EA9402900E9FC4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ6K9TT2W7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CurrentSession/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CurrentSession;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.dsadriel.Flow.CurrentSession;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF7299EF2EA9402900E9FC4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FQ6K9TT2W7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CurrentSession/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CurrentSession;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.dsadriel.Flow.CurrentSession;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -327,6 +505,15 @@
 			buildConfigurations = (
 				5CB42ABD2EA7C7A000E8374D /* Debug */,
 				5CB42ABE2EA7C7A000E8374D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7299F12EA9402900E9FC4E /* Build configuration list for PBXNativeTarget "CurrentSessionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7299EE2EA9402900E9FC4E /* Debug */,
+				BF7299EF2EA9402900E9FC4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

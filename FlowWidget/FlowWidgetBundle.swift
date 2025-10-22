@@ -12,5 +12,6 @@ import SwiftUI
 struct FlowWidgetBundle: WidgetBundle {
     var body: some Widget {
         FlowWidget()
+        FlowActivityConfiguration()
     }
 }

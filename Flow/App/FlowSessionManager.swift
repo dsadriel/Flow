@@ -35,6 +35,8 @@ class FlowSessionManager {
         Task {
             await FlowPersistence.shared.insert(session)
         }
+
+        FlowLiveActivityManager.shared.startLiveActivity(startedOn: session.start, id: session.id)
     }
     
     /// Ends the current flow session
@@ -57,12 +59,16 @@ class FlowSessionManager {
 
         currentSession = nil
         totalPauseDuration = 0
+
+        FlowLiveActivityManager.shared.endLiveActivity()
     }
     
     /// Pauses the current flow session
     func pauseSession() {
         guard currentSession != nil, pauseStartTime == nil else { return }
         pauseStartTime = .now
+
+        FlowLiveActivityManager.shared.updateLiveActivity(isPaused: true, pausedTime: totalPauseDuration)
     }
     
     /// Resumes a paused flow session
@@ -70,6 +76,8 @@ class FlowSessionManager {
         guard let pauseStart = pauseStartTime else { return }
         totalPauseDuration += Date.now.timeIntervalSince(pauseStart)
         pauseStartTime = nil
+
+        FlowLiveActivityManager.shared.updateLiveActivity(isPaused: false, pausedTime: totalPauseDuration)
     }
     
     /// Returns whether the current session is paused

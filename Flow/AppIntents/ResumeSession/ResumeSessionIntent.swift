@@ -7,6 +7,7 @@
 
 import Foundation
 import AppIntents
+import SwiftUI
 
 struct ResumeSessionIntent: AppIntent {
     
@@ -14,8 +15,17 @@ struct ResumeSessionIntent: AppIntent {
     
     static var description: IntentDescription? = "Resume the current paused session"
     
-    func perform() async throws -> some IntentResult & ProvidesDialog{
-        await FlowSessionManager.shared.resumeSession()
-        return .result(dialog: "Session resumed")
+    @MainActor
+    func perform() async throws -> some IntentResult & ProvidesDialog & ShowsSnippetView{
+        
+        let session = FlowSessionManager.shared.currentSession
+        
+        FlowSessionManager.shared.resumeSession()
+        
+        return .result(dialog: "Session resumed") {
+            CurrentSessionCard(session: session, isPaused: false)
+                .padding()
+                .frame(alignment: .center)
+        }
     }
 }

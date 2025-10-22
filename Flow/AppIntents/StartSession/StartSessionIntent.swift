@@ -18,8 +18,12 @@ struct StartSessionIntent: AppIntent {
     
     //our perfom() func in @MainActor, returns a result and a dialog
     @MainActor
-    func perform() throws -> some IntentResult & ProvidesDialog {
+    func perform() throws -> some IntentResult & ProvidesDialog & ReturnsValue<Date> {
+        let startTime: Date = .now
+        
         FlowSessionManager.shared.startSession()
-        return .result(dialog: "Session started")
+        
+        //Value is to be used on the shortcuts app (like the next intent in a automation)
+        return .result(value: startTime, dialog: "Session started at \(startTime)")
     }
 }

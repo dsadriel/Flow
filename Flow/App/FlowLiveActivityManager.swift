@@ -16,8 +16,8 @@ class FlowLiveActivityManager {
     // States
     var flowLiveActivity: Activity<FlowActivityAttributes>? = nil
 
-    func startLiveActivity() {
-        let attributes = FlowActivityAttributes(startedOn: .now, id: UUID())
+    func startLiveActivity(startedOn: Date, id: UUID) {
+        let attributes = FlowActivityAttributes(startedOn: startedOn, id: id)
 
         let initialState = FlowActivityAttributes.ContentState(isPaused: false, accumulatedTime: 0)
 

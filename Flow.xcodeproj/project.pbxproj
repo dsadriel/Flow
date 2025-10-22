@@ -76,7 +76,7 @@
 			);
 			target = 5C3A7F892EA805660073563B /* FlowWidgetExtension */;
 		};
-		5C3A7FB92EA81F260073563B /* Exceptions for "UIComponents" folder in "Flow" target */ = {
+		5C8F942B2EA8470100EE5795 /* Exceptions for "Components" folder in "Flow" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ActionButtons.swift,
@@ -84,7 +84,7 @@
 			);
 			target = 5CB42AB02EA7C7A000E8374D /* Flow */;
 		};
-		5C3A7FBB2EA81F2C0073563B /* Exceptions for "UIComponents" folder in "FlowWidgetExtension" target */ = {
+		5C8F942C2EA8470100EE5795 /* Exceptions for "Components" folder in "FlowWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ActionButtons.swift,
@@ -112,13 +112,13 @@
 			path = FlowWidget;
 			sourceTree = "<group>";
 		};
-		5C3A7FB82EA81F1B0073563B /* UIComponents */ = {
+		5C8F94252EA846E300EE5795 /* Components */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				5C3A7FB92EA81F260073563B /* Exceptions for "UIComponents" folder in "Flow" target */,
-				5C3A7FBB2EA81F2C0073563B /* Exceptions for "UIComponents" folder in "FlowWidgetExtension" target */,
+				5C8F942B2EA8470100EE5795 /* Exceptions for "Components" folder in "Flow" target */,
+				5C8F942C2EA8470100EE5795 /* Exceptions for "Components" folder in "FlowWidgetExtension" target */,
 			);
-			path = UIComponents;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		5CB42AB32EA7C7A000E8374D /* Flow */ = {
@@ -154,7 +154,7 @@
 		5C2144662EA7FF2300497E23 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				5C3A7FB82EA81F1B0073563B /* UIComponents */,
+				5C8F94252EA846E300EE5795 /* Components */,
 				5C2144682EA7FFA900497E23 /* LiveActivity */,
 			);
 			path = Shared;

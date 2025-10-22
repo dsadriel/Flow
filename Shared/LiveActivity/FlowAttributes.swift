@@ -5,8 +5,8 @@
 //  Created by Adriel de Souza on 21/10/25.
 //
 
-import ActivityKit
 import Foundation
+import ActivityKit
 
 // MARK: ActivityAttributes
 struct FlowActivityAttributes: ActivityAttributes {

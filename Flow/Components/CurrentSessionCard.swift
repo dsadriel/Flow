@@ -18,7 +18,12 @@ struct CurrentSessionCard: View {
                 .foregroundStyle(.secondary)
             
             if let session = session {
-                TimerTextView(startDate: session.start, accumulatedTime: Double(session.pausedTime), isPaused: isPaused)
+                let manager = FlowSessionManager.shared
+                TimerTextView(
+                    startDate: manager.currentActiveStartDate,
+                    accumulatedTime: manager.accumulatedActiveTime,
+                    isPaused: isPaused
+                )
             }
             
             if isPaused {

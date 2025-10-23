@@ -14,21 +14,17 @@ struct TimerTextView: View {
 
     var body: some View {
         let now = Date()
-        // Elapsed based on current run state
-        let elapsed =
-            isPaused
-            ? accumulatedTime
-            : accumulatedTime + now.timeIntervalSince(startDate)
-
-        // Make the timer count up indefinitely from a point in the past
-        let lowerBound = now.addingTimeInterval(-elapsed)
-        let upperBound = Date.distantFuture
+        
+        // When running: timer counts from startDate
+        // When paused: timer is frozen at accumulatedTime
+        // We offset the startDate by accumulated time to include previous active periods
+        let effectiveStart = startDate.addingTimeInterval(-accumulatedTime)
 
         Text("00:00")
             .hidden()
             .overlay {
                 Text(
-                    timerInterval: lowerBound...upperBound,
+                    timerInterval: effectiveStart...Date.distantFuture,
                     pauseTime: isPaused ? now : nil,
                     countsDown: false,
                     showsHours: true

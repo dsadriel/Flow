@@ -5,6 +5,7 @@
 //  Created by Adriel de Souza on 21/10/25.
 //
 
+import ActivityKit
 import Foundation
 
 @MainActor
@@ -12,5 +13,18 @@ import Foundation
 class FlowLiveActivityManager {
     static let shared = FlowLiveActivityManager()
 
-    private init() {}
+    // States
+    var flowLiveActivity: Activity<FlowActivityAttributes>? = nil
+
+    func startLiveActivity(startedOn: Date, id: UUID) {
+        // ... 
+    }
+
+    func updateLiveActivity(isPaused: Bool, pausedTime: TimeInterval) {
+        // ...
+    }
+
+    func endLiveActivity() {
+        // ...
+    }
 }

@@ -11,146 +11,145 @@ import Foundation
 @Observable
 class FlowSessionManager {
     static let shared = FlowSessionManager()
-    
+
     private(set) var currentSession: FlowSession?
-    private var pauseStartTime: Date?
-    private var totalPauseDuration: TimeInterval = 0
-    
+    private var pauseStartTime: Date? // non-nil while paused
+
     private init() {}
-    
+
     // MARK: - Session Actions
-    
-    /// Starts a new flow session
+
     func startSession(note: String? = nil) {
-        // End any existing session first
-        if currentSession != nil {
-            endSession()
-        }
-        
+        if currentSession != nil { endSession() }
+
         let session = FlowSession(start: .now, note: note)
+        session.pausedTime = 0
+        session.end = nil
+        session.duration = nil
+
         currentSession = session
         pauseStartTime = nil
-        totalPauseDuration = 0
-        
-        Task {
-            await FlowPersistence.shared.insert(session)
-        }
+
+        Task { await FlowPersistence.shared.insert(session) }
+        FlowLiveActivityManager.shared.startLiveActivity(startedOn: session.start, id: session.id)
     }
-    
-    /// Ends the current flow session
+
     func endSession() {
         guard let session = currentSession else { return }
-        
-        // If session was paused, add the remaining pause duration
+
+        // If currently paused, close that pause window first
         if let pauseStart = pauseStartTime {
-            totalPauseDuration += Date.now.timeIntervalSince(pauseStart)
+            session.pausedTime += Date.now.timeIntervalSince(pauseStart)
             pauseStartTime = nil
         }
-        
+
         session.end = .now
         let totalElapsed = session.end!.timeIntervalSince(session.start)
-        session.duration = totalElapsed - totalPauseDuration
+        session.duration = max(0, totalElapsed - session.pausedTime) // never negative
 
+        // Persist or discard short sessions (< 30s active)
         Task {
-            session.duration ?? 0.0 >= 30.0 ? await FlowPersistence.shared.update(session) : await FlowPersistence.shared.delete(session)
+            if (session.duration ?? 0) >= 30 {
+                await FlowPersistence.shared.update(session)
+            } else {
+                await FlowPersistence.shared.delete(session)
+            }
         }
 
+        // Update live activity and clear
+        FlowLiveActivityManager.shared.endLiveActivity()
         currentSession = nil
-        totalPauseDuration = 0
     }
-    
-    /// Pauses the current flow session
+
     func pauseSession() {
         guard currentSession != nil, pauseStartTime == nil else { return }
         pauseStartTime = .now
+
+        // Report total paused INCLUDING the just-started window as 0 added
+        FlowLiveActivityManager.shared.updateLiveActivity(
+            isPaused: true,
+            pausedTime: pausedTimeSoFar()
+        )
     }
-    
-    /// Resumes a paused flow session
+
     func resumeSession() {
-        guard let pauseStart = pauseStartTime else { return }
-        totalPauseDuration += Date.now.timeIntervalSince(pauseStart)
+        guard let session = currentSession, let pauseStart = pauseStartTime else { return }
+
+        // Close the pause window and accumulate into session.pausedTime
+        session.pausedTime += Date.now.timeIntervalSince(pauseStart)
+        currentSession = session
         pauseStartTime = nil
+
+        FlowLiveActivityManager.shared.updateLiveActivity(
+            isPaused: false,
+            pausedTime: pausedTimeSoFar()
+        )
     }
-    
-    /// Returns whether the current session is paused
-    var isPaused: Bool {
-        return pauseStartTime != nil
-    }
-    
-    /// Returns the active duration of the current session (excluding pauses)
+
+    // MARK: - Derived State
+
+    var isPaused: Bool { pauseStartTime != nil }
+
+    /// Active duration (now - start - paused) while running.
     var currentSessionDuration: TimeInterval {
         guard let session = currentSession else { return 0 }
-        
-        let totalElapsed = Date.now.timeIntervalSince(session.start)
-        var pauseDuration = totalPauseDuration
-        
-        // If currently paused, add the current pause duration
-        if let pauseStart = pauseStartTime {
-            pauseDuration += Date.now.timeIntervalSince(pauseStart)
-        }
-        
-        return totalElapsed - pauseDuration
-    }
-    
-    // MARK: - Session Queries
-    
-    /// Retrieves all flow sessions
-    func getSessions() async -> [FlowSession] {
-        return await FlowPersistence.shared.fetchAllSessions()
-    }
-    
-    /// Retrieves sessions within a date range
-    func getSessions(from startDate: Date, to endDate: Date) async -> [FlowSession] {
-        return await FlowPersistence.shared.fetchSessions(from: startDate, to: endDate)
-    }
-    
-    // MARK: - Analytics
-    
-    /// Calculates and returns analytics for all flow sessions
-    func getStats() async -> FlowAnalytics {
-        let allSessions = await getSessions().filter { $0.duration != nil }
-        
-        // Calculate date boundaries
         let now = Date.now
-        let calendar = Calendar.current
-        let startOfToday = calendar.startOfDay(for: now)
-        let startOfWeek = calendar.dateInterval(of: .weekOfYear, for: now)?.start ?? now
-        let startOfMonth = calendar.dateInterval(of: .month, for: now)?.start ?? now
-        
-        // Total stats
-        let totalSessions = allSessions.count
-        let totalDuration = allSessions.reduce(0) { $0 + ($1.duration ?? 0) }
+        let totalElapsed = (session.end ?? now).timeIntervalSince(session.start)
+        return max(0, totalElapsed - pausedTimeSoFar())
+    }
+
+    /// Returns session.pausedTime plus any in-flight pause window.
+    private func pausedTimeSoFar() -> TimeInterval {
+        guard let session = currentSession else { return 0 }
+        let inFlight = pauseStartTime.map { Date.now.timeIntervalSince($0) } ?? 0
+        return session.pausedTime + inFlight
+    }
+
+    // MARK: - Session Queries
+
+    func getSessions() async -> [FlowSession] {
+        await FlowPersistence.shared.fetchAllSessions()
+    }
+
+    func getSessions(from startDate: Date, to endDate: Date) async -> [FlowSession] {
+        await FlowPersistence.shared.fetchSessions(from: startDate, to: endDate)
+    }
+
+    // MARK: - Analytics
+
+    func getStats() async -> FlowAnalytics {
+        let all = await getSessions().filter { $0.duration != nil }
+
+        let now = Date.now
+        let cal = Calendar.current
+        let startOfToday = cal.startOfDay(for: now)
+        let startOfWeek = cal.dateInterval(of: .weekOfYear, for: now)?.start ?? now
+        let startOfMonth = cal.dateInterval(of: .month, for: now)?.start ?? now
+
+        func sum(_ arr: [FlowSession]) -> TimeInterval { arr.reduce(0) { $0 + ($1.duration ?? 0) } }
+
+        let totalSessions = all.count
+        let totalDuration = sum(all)
         let averageDuration = totalSessions > 0 ? totalDuration / Double(totalSessions) : 0
-        let longestSession = allSessions.map { $0.duration ?? 0 }.max() ?? 0
-        let shortestSession = allSessions.map { $0.duration ?? 0 }.min() ?? 0
-        
-        // Today stats
-        let sessionsToday = allSessions.filter { $0.start >= startOfToday }
-        let todayCount = sessionsToday.count
-        let todayDuration = sessionsToday.reduce(0) { $0 + ($1.duration ?? 0) }
-        
-        // Week stats
-        let sessionsThisWeek = allSessions.filter { $0.start >= startOfWeek }
-        let weekCount = sessionsThisWeek.count
-        let weekDuration = sessionsThisWeek.reduce(0) { $0 + ($1.duration ?? 0) }
-        
-        // Month stats
-        let sessionsThisMonth = allSessions.filter { $0.start >= startOfMonth }
-        let monthCount = sessionsThisMonth.count
-        let monthDuration = sessionsThisMonth.reduce(0) { $0 + ($1.duration ?? 0) }
-        
+        let longest = all.map { $0.duration ?? 0 }.max() ?? 0
+        let shortest = all.map { $0.duration ?? 0 }.min() ?? 0
+
+        let today = all.filter { $0.start >= startOfToday }
+        let week = all.filter { $0.start >= startOfWeek }
+        let month = all.filter { $0.start >= startOfMonth }
+
         return FlowAnalytics(
             totalSessions: totalSessions,
             totalDuration: totalDuration,
             averageDuration: averageDuration,
-            longestSession: longestSession,
-            shortestSession: shortestSession,
-            sessionsToday: todayCount,
-            durationToday: todayDuration,
-            sessionsThisWeek: weekCount,
-            durationThisWeek: weekDuration,
-            sessionsThisMonth: monthCount,
-            durationThisMonth: monthDuration
+            longestSession: longest,
+            shortestSession: shortest,
+            sessionsToday: today.count,
+            durationToday: sum(today),
+            sessionsThisWeek: week.count,
+            durationThisWeek: sum(week),
+            sessionsThisMonth: month.count,
+            durationThisMonth: sum(month)
         )
     }
 }

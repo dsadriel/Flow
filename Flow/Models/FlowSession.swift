@@ -14,6 +14,7 @@ class FlowSession: Identifiable {
     var start: Date
     var end: Date?
     var duration: TimeInterval?
+    var pausedTime: TimeInterval = 0
     var note: String?
 
     init(id: UUID = UUID(), start: Date = .now, end: Date? = nil, duration: TimeInterval? = nil, note: String? = nil) {

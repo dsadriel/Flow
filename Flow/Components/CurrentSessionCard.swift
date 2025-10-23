@@ -18,9 +18,7 @@ struct CurrentSessionCard: View {
                 .foregroundStyle(.secondary)
             
             if let session = session {
-                Text(session.start, style: .timer)
-                    .font(.system(size: 48, weight: .bold, design: .rounded))
-                    .monospacedDigit()
+                TimerTextView(startDate: session.start, accumulatedTime: Double(session.pausedTime), isPaused: isPaused)
             }
             
             if isPaused {

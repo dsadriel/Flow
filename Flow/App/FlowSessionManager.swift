@@ -104,6 +104,44 @@ class FlowSessionManager {
         let inFlight = pauseStartTime.map { Date.now.timeIntervalSince($0) } ?? 0
         return session.pausedTime + inFlight
     }
+    
+    /// The start date for the current active period
+    var currentActiveStartDate: Date {
+        guard let session = currentSession else { return Date.now }
+        
+        if isPaused {
+            // When paused, we want to show the time frozen
+            // Return a date that when subtracted from now equals the active time
+            return Date.now
+        } else {
+            // When running, find when this active period started
+            // We need to work backwards from the session start + all pauses
+            // Total time from start to now
+            let totalElapsed = Date.now.timeIntervalSince(session.start)
+            // Time spent paused
+            let paused = session.pausedTime
+            // Active time so far
+            let activeTime = totalElapsed - paused
+            // When did this active period start? Now minus active time
+            return Date.now.addingTimeInterval(-activeTime)
+        }
+    }
+    
+    /// Accumulated active time (for TimerTextView when paused)
+    var accumulatedActiveTime: TimeInterval {
+        guard let session = currentSession else { return 0 }
+        
+        if isPaused {
+            // When paused, calculate active time up to the pause moment
+            if let pauseStart = pauseStartTime {
+                let totalElapsedUntilPause = pauseStart.timeIntervalSince(session.start)
+                return max(0, totalElapsedUntilPause - session.pausedTime)
+            }
+        }
+        
+        // When running, return 0 since we're using startDate to track elapsed time
+        return 0
+    }
 
     // MARK: - Session Queries
 
